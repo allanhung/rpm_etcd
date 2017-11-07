@@ -9,6 +9,9 @@ URL:		https://github.com/coreos/%{name}
 Source1:	%{name}.service
 Source2:	%{name}.conf
 
+%description
+A highly-available key value store for shared configuration.
+
 
 %prep
 export GOPATH=/usr/share/gocode
@@ -42,8 +45,6 @@ getent passwd %{name} >/dev/null || useradd -r -g %{name} -d %{_sharedstatedir}/
 %postun
 %systemd_postun %{name}.service
 
-#define license tag if not already defined
-%{!?_licensedir:%global license %doc}
 
 %files
 %config(noreplace) %{_sysconfdir}/%{name}
